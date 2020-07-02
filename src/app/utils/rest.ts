@@ -1,6 +1,5 @@
+const BASE_URL = process.env.API_URL
 const JSON_CONTENT_TYPE = 'application/json';
-
-const BASE_URL = "http://localhost:5000"
 
 async function addAuthenticationHeaders(options: { [k: string]: any }) {
   // const accessToken = await getAccessToken();

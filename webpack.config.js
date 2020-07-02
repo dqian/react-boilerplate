@@ -1,9 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
 var package = require('./package.json');
+var dotenv = require('dotenv');
 
 // variables
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
+var ENV_VARS = isProduction ? dotenv.config('/.env.prod') : dotenv.config();
 var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './build');
 
@@ -111,6 +113,9 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(ENV_VARS.parsed),
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
