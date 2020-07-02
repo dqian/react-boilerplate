@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './style.css';
 import { RouteComponentProps } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { useTodoActions } from 'app/actions';
 import { RootState } from 'app/reducers';
 import { TodoModel } from 'app/models';
 import { Header, TodoList, Footer } from 'app/components';
+import { getJson } from 'app/utils/rest';
 
 const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
   (key) => TodoModel.Filter[key]
@@ -42,6 +43,14 @@ export const App = ({ history, location }: App.Props) => {
     },
     [history]
   );
+
+  useEffect(() => {
+    const helloWorld = async () => {
+      const response = await getJson('/');
+      console.log(response);
+    };
+    helloWorld();
+  })
 
   const filteredTodos = React.useMemo(() => (filter ? todos.filter(FILTER_FUNCTIONS[filter]) : todos), [todos, filter]);
   const activeCount = React.useMemo(() => todos.filter((todo) => !todo.completed).length, [todos]);
