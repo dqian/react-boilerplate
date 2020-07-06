@@ -17,6 +17,12 @@ function buildUrl(url: string, params: {}) {
   return `${BASE_URL}${url}${searchParams === "" ? `?${searchParams}` : ""}`;
 }
 
+function handleErrors(response: Response) {
+  if (!response.ok) {
+      throw Error(response.statusText);
+  }
+  return response;
+}
 
 // export function ensureValidResponse(response: Response, json: object | string) {
 //   const handler = statusesHandlers.get(response.status);
@@ -39,47 +45,34 @@ function ensureValidContentType(
   return null;
 }
 
-
 export async function putJson(url: string, data = {}): Promise<any> {
   const request: RequestInit = await addAuthenticationHeaders({
     body: JSON.stringify(data),
     method: 'PUT'
   });
-  try {
-    const response = await fetch(url, request);
-    const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
-    const json = validJson ? await response.json() : {};
-    // ensureValidResponse(response, json);
-    return json;
-  } catch (err) {
-    // processError({
-    //   message: 'Unable to complete PUT JSON request',
-    //   err,
-    //   url,
-    //   details: { data }
-    // });
-  }
+
+  const response = await fetch(url, request);
+  handleErrors(response);
+  const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
+  const json = validJson ? await response.json() : {};
+  // ensureValidResponse(response, json);
+  return json;
 }
+
 export async function patchJson(url: string, data = {}): Promise<any> {
   const request: RequestInit = await addAuthenticationHeaders({
     body: JSON.stringify(data),
     method: 'PATCH'
   });
-  try {
-    const response = await fetch(url, request);
-    const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
-    const json = validJson ? await response.json() : {};
-    // ensureValidResponse(response, json);
-    return json;
-  } catch (err) {
-    // processError({
-    //   message: 'Unable to complete PATCH JSON request',
-    //   err,
-    //   url,
-    //   details: { data: data }
-    // });
-  }
+
+  const response = await fetch(url, request);
+  handleErrors(response);
+  const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
+  const json = validJson ? await response.json() : {};
+  // ensureValidResponse(response, json);
+  return json; 
 }
+
 export async function postJson(
   url: string,
   data = {},
@@ -89,37 +82,23 @@ export async function postJson(
     body: JSON.stringify(data),
     method: 'POST'
   });
-  try {
-    const response = await fetch(buildUrl(url, params), request);
-    const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
-    const json = validJson ? await response.json() : {};
-    // ensureValidResponse(response, json);
-    return json;
-  } catch (err) {
-    // processError({
-    //   message: 'Unable to complete POST JSON request',
-    //   err,
-    //   url,
-    //   details: { data }
-    // });
-  }
+  const response = await fetch(buildUrl(url, params), request);
+  handleErrors(response);
+  const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
+  const json = validJson ? await response.json() : {};
+  // ensureValidResponse(response, json);
+  return json;
 }
+
 export async function getJson(url: string, params = {}): Promise<any> {
   const request: RequestInit = await addAuthenticationHeaders({
     method: 'GET'
   });
-  try {
-    const response = await fetch(buildUrl(url, params), request);
-    const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
-    const json = validJson ? await response.json() : {};
-    // ensureValidResponse(response, json);
-    return json;
-  } catch (err) {
-    // processError({
-    //   message: 'Unable to complete GET JSON request',
-    //   err,
-    //   url,
-    //   details: { params }
-    // });
-  }
+
+  const response = await fetch(buildUrl(url, params), request);
+  handleErrors(response);
+  const validJson = ensureValidContentType(JSON_CONTENT_TYPE, response);
+  const json = validJson ? await response.json() : {};
+  // ensureValidResponse(response, json);
+  return json;
 }

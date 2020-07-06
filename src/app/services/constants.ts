@@ -14,3 +14,7 @@ export const ApiRoute = {
   LoginUser: `${ApiRouteRootPath.Session}/login`,
   RegisterUser: `${ApiRouteRootPath.Session}/register`,
 }
+
+export enum ReduxFormName {
+  Register = "register"
+}

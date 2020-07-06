@@ -1,5 +1,7 @@
 import createMutableReducer from "../utils/mutableReducer";
 import { IUser } from "app/models/user";
+import { IUserRegistrationFormValues } from "app/components/screens/Register";
+import { IActionMeta } from "../utils/actions";
 
 export interface IUserStore {
   user?: IUser;
@@ -13,6 +15,8 @@ export enum UserActions {
   LoginComplete = 'USER:LOGIN_COMPLETE',
   LoginError = 'USER:LOGIN_ERROR',
   Logout = 'USER:LOGOUT',
+  RegisterBegin = 'USER:REGISTER_BEGIN',
+  RegisterComplete = 'USER:REGISTER_COMPLETE',
   SetLoggedInUser = 'USER:SET_LOGGED_IN_USER',
   VerifyJwtAuthentication = 'USER:VERIFY_JWT_AUTHENTICATION',
 }
@@ -29,6 +33,17 @@ export const logoutUser = () => ({
 export const verifyJwtAuthentication = (jwtToken: string) => ({
   type: UserActions.VerifyJwtAuthentication,
   payload: jwtToken,
+});
+
+export const registerUser = (values: IUserRegistrationFormValues, actionMeta: IActionMeta) => ({
+  type: UserActions.RegisterBegin,
+  payload: values,
+  actionMeta,
+})
+
+export const userRegistrationComplete = (user: IUser) => ({
+  type: UserActions.RegisterComplete,
+  payload: user,
 });
 
 const initialState = {
@@ -58,5 +73,9 @@ export const reducer = createMutableReducer(initialState, {
   [UserActions.Logout]: (draft, action) => {
     draft.isLoggedIn = false;
     draft.user = undefined;
+  },
+  [UserActions.LoginComplete]: (draft, action) => {
+    draft.isLoggedIn = true;
+    draft.user = action.payload;
   },
 })
