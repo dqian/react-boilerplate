@@ -7,10 +7,17 @@ import { Login } from 'app/components/screens/Login';
 import { Register } from 'app/components/screens/Register';
 import { Home } from 'app/components/screens/Home';
 import { Dashboard } from 'app/components/screens/Dashboard';
+import { hasJwtToken } from 'app/services/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { verifyJwtAuthentication, logoutUser } from 'app/redux/modules/user';
+import { selectIsUserLoggedIn } from 'app/redux/selectors/user';
 
 interface IProps extends RouteComponentProps<void> {}
 
-export const App = (props: IProps) => {
+export const App: React.FC<IProps> = (props: IProps) => {
+  const dispatch = useDispatch();
+  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
+  
   useEffect(() => {
     const helloWorld = async () => {
       const response = await getJson('/');
@@ -19,11 +26,13 @@ export const App = (props: IProps) => {
     helloWorld();
   })
 
-  // if missing jwttoken locally, redirect to login page
-  
-  // show loading screen and 
-  // dispatch authenticate user
-
+  if (!hasJwtToken()) {
+    if (isUserLoggedIn) {
+      dispatch(logoutUser);
+    }
+  } else {
+    dispatch(verifyJwtAuthentication)
+  }
 
   return (
     <div>
