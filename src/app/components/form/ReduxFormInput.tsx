@@ -12,7 +12,7 @@ const ReduxFormInput: React.FC = (field: any) => (
             step={field.step}
             disabled={field.disabled}
         />
-        {field.meta.touched && <p className="text-danger">{field.meta.error}</p>}
+        {field.meta.touched && field.meta.error && <p>{field.meta.error}</p>}
     </div>
 );
 

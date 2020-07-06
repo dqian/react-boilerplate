@@ -16,5 +16,6 @@ export const ApiRoute = {
 }
 
 export enum ReduxFormName {
-  Register = "register"
+  Register = "register",
+  Login = "login",
 }

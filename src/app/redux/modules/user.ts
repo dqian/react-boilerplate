@@ -3,6 +3,7 @@ import { IUser } from "app/models/user";
 import { IUserRegistrationFormValues } from "app/components/screens/Register";
 import { IActionMeta } from "../utils/actions";
 import { hasJwtToken } from "app/services/auth";
+import { ILoginFormValues } from "app/components/screens/Login";
 
 export interface IUserStore {
   user?: IUser;
@@ -26,6 +27,17 @@ export const setLoggedInUser = (user: IUser) => ({
   type: UserActions.SetLoggedInUser,
   payload: user,
 });
+
+export const loginUser = (values: ILoginFormValues, actionMeta: IActionMeta) => ({
+  type: UserActions.LoginBegin,
+  payload: values,
+  actionMeta,
+});
+
+export const userLoginComplete = (user: IUser) => ({
+  type: UserActions.LoginComplete,
+  payload: user,
+})
 
 export const logoutUser = () => ({
   type: UserActions.Logout
