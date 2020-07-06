@@ -2,6 +2,7 @@ import createMutableReducer from "../utils/mutableReducer";
 import { IUser } from "app/models/user";
 import { IUserRegistrationFormValues } from "app/components/screens/Register";
 import { IActionMeta } from "../utils/actions";
+import { hasJwtToken } from "app/services/auth";
 
 export interface IUserStore {
   user?: IUser;
@@ -48,13 +49,14 @@ export const userRegistrationComplete = (user: IUser) => ({
 
 const initialState = {
   user: undefined,
-  isLoggedIn: false,
+  isLoggedIn: hasJwtToken(),
   isLoggingIn: false,
   loginError: undefined,
 } as IUserStore;
 
 export const reducer = createMutableReducer(initialState, {
   [UserActions.SetLoggedInUser]: (draft, action) => {
+    draft.isLoggedIn = true;
     draft.user = action.payload;
   },
   [UserActions.LoginBegin]: (draft, action) => {

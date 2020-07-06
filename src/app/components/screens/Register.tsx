@@ -56,7 +56,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps & InjectedFormPro
         />
       </div>
             
-      <div style={{ paddingBottom: 30 }}>
+      <div>
         <button
           type="submit"
           disabled={isRegistering}

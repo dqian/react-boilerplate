@@ -1,13 +1,16 @@
+import { getJwtToken } from "app/services/auth";
+
 const BASE_URL = process.env.API_URL
 const JSON_CONTENT_TYPE = 'application/json';
 
 async function addAuthenticationHeaders(options: { [k: string]: any }) {
-  // const accessToken = await getAccessToken();
+  const jwtToken = getJwtToken();
   return {
     ...options,
     headers: {
       ...options.headers,
-      // Authorization: `Bearer ${accessToken}`
+      "Content-Type": JSON_CONTENT_TYPE,
+      Authorization: `JWT ${jwtToken}`
     }
   };
 }

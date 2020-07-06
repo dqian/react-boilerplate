@@ -4,6 +4,15 @@ import { getJson, postJson } from "app/utils/rest";
 import { ApiRoute } from "app/services/constants";
 import { IUserRegistrationFormValues } from "app/components/screens/Register";
 import { IActionWithPayload } from "../utils/actions";
+import { setJwtToken, clearJwtToken } from "app/services/auth";
+import { IUser } from "app/models/user";
+
+interface IRegisterUserResponse {
+  auth: boolean;
+  message: string;
+  token: string;
+  user: IUser;
+}
 
 function* fetchUserInfo() {
   const user = yield getJson(ApiRoute.UserInfo);
@@ -15,10 +24,15 @@ function* registerUser({
   actionMeta
 }: IActionWithPayload<IUserRegistrationFormValues>) {
   try {
-    const user = yield postJson(ApiRoute.RegisterUser, payload);
-    yield put(userRegistrationComplete(user));
-    if (actionMeta && actionMeta.success) {
-      actionMeta.success(user);
+    const response: IRegisterUserResponse = yield postJson(ApiRoute.RegisterUser, payload);
+    if (response.auth) {
+      setJwtToken(response.token);
+      yield put(userRegistrationComplete(response.user));
+      if (actionMeta && actionMeta.success) {
+        actionMeta.success(response.user);
+      }
+    } else {
+      throw Error(response.message);
     }
   } catch (err) {
     console.error(err);
@@ -31,7 +45,12 @@ function* registerUser({
   }
 }
 
+function* logoutUser() {
+  clearJwtToken();
+}
+
 export const userSagas = [
   takeEvery(UserActions.VerifyJwtAuthentication, fetchUserInfo),
   takeEvery(UserActions.RegisterBegin, registerUser),
+  takeEvery(UserActions.Logout, logoutUser),
 ];
