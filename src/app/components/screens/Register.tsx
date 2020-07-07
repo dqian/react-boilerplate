@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router';
 import { reduxForm, InjectedFormProps, Field, FormErrors } from 'redux-form';
 import { ReduxFormName, AppRoute } from 'app/services/constants';
 import ReduxFormInput from '../form/ReduxFormInput';
-import { normalizeEmail } from 'app/services/form';
 import { useDispatch } from 'react-redux';
 import { registerUser } from 'app/redux/modules/user';
 
@@ -43,7 +42,6 @@ export const RegistrationForm: React.FC<IRegistrationFormProps & InjectedFormPro
           component={ReduxFormInput}
           label="Email"
           placeHolder="Email Address"
-          normalize={normalizeEmail}
         />
       </div>
       <div>
