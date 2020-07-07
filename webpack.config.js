@@ -5,7 +5,7 @@ var dotenv = require('dotenv');
 
 // variables
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
-var ENV_VARS = isProduction ? dotenv.config('/.env.prod') : dotenv.config();
+var ENV_VARS = dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './build');
 

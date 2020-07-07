@@ -16,6 +16,10 @@
 - `brew install yarn`
 - `yarn`
 
+##### 3. Initialize Environment Variables (local)
+- `cp .env.example .env.local`
+- (optional) update `PROJECT_PREFIX` in `.env.local`
+
 ##### 3. Run Webpack
 - `yarn start`
 ```
