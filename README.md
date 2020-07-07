@@ -1,3 +1,38 @@
+# React Boilerplate (Redux, Typescript)
+
+## Prerequisites
+
+1. [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. [Homebrew](https://brew.sh/)
+
+## Getting Started (Local Setup)
+
+##### 1. Install Node
+
+- `nvm install node`
+
+##### 2. Install Node Modules
+- `brew update`
+- `brew install yarn`
+- `yarn`
+
+##### 3. Run Webpack
+- `yarn start`
+```
+｢wds｣: Project is running at http://localhost:3000/
+｢wds｣: webpack output is served from /
+...
+｢wdm｣: Compiled successfully.
+```
+
+## Resources
+- [original boilerplate](https://github.com/rokoroku/react-redux-typescript-boilerplate)
+------
+
+### OLD README BELOW
+
+# 
+
 # Frontend Boilerplate with React, Redux & TypeScript
 
 A bare minimum react-hooks-redux-webpack-typescript boilerplate with TodoMVC example.
