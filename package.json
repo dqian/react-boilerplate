@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "NODE_ENV=local webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
     "build": "NODE_ENV=production webpack -p --progress --colors",
-    "deploy": "sh deployment/prod-deploy-aws.sh",
+    "deploy": "sh deployment/prod-deploy-aws.sh"
   },
   "license": "MIT",
   "devDependencies": {
