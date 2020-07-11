@@ -21,7 +21,7 @@
 - (optional) update `PROJECT_PREFIX` in `.env.local`
 
 ##### 3. Run Webpack
-- `yarn start`
+- `yarn dev`
 ```
 ｢wds｣: Project is running at http://localhost:3000/
 ｢wds｣: webpack output is served from /

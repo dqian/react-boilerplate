@@ -14,11 +14,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=local webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
-    "build": "webpack -p --progress --colors"
+    "dev": "NODE_ENV=local webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
+    "build": "NODE_ENV=production webpack -p --progress --colors",
+    "deploy": "sh deployment/prod-deploy-aws.sh",
   },
   "license": "MIT",
   "devDependencies": {
