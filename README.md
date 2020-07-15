@@ -57,6 +57,11 @@
 - From your [ECS Cluster dashboard](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters), navigate into your service and open the **Tasks** tab. From here, you can wait for your task to reach "RUNNING" status and/or click into the task and view logs.
 - Once running, you can type in your load balancer's DNS name into a browser to reach your react app. Try registering a new account to verify connectivity to the backend service.
 
+## Domain and SSL
+- We want our visitors to see the react app upon arriving our domain so we will put it behind `www.my-domain.com`.
+- [WIKI: Domain and SSL](https://github.com/dqian/node-boilerplate/wiki/Domain-and-SSL)
+- Don't forget to update `API_URL` in `.env.production` if you've also updated the SSL/domain on the endpoint for the backend.
+
 ## Resources
 - [original boilerplate](https://github.com/rokoroku/react-redux-typescript-boilerplate)
 ------
