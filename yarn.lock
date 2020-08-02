@@ -2705,8 +2705,8 @@ lodash.templatesettings@^4.0.0:
     lodash._reinterpolate "^3.0.0"
 
 lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -3013,10 +3013,6 @@ node-libs-browser@^2.2.1:
 node-releases@^1.1.58:
   version "1.1.58"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.58.tgz#8ee20eef30fa60e52755fcc0942def5a734fe935"
-
-normalize-email@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/normalize-email/-/normalize-email-1.1.1.tgz#7f7e495950b67be3ecc788ba72ef7df951e9f32e"
 
 normalize-path@^2.1.1:
   version "2.1.1"
