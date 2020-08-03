@@ -63,8 +63,8 @@
 - Don't forget to update `API_URL` in `.env.production` if you've also updated the SSL/domain on the endpoint for the backend.
 
 ## Using Cloudformation
-- Create `aws cloudformation create-stack --stack-name react-boilerplate-deployment --template-body file://./deployment/ecs.yml --capabilities CAPABIM --parameters 'ParameterKey=SubnetID,ParameterValue=subnet-<your subnet id>'`
-- Delete `aws cloudformation delete-stack --stack-name react-boilerplate-deployment`
+- Create `aws cloudformation create-stack --stack-name react-boilerplate-stack --template-body file://./deployment/ecs.yml --capabilities CAPABIM --parameters 'ParameterKey=SubnetID,ParameterValue=subnet-<your subnet id>'`
+- Delete `aws cloudformation delete-stack --stack-name react-boilerplate-stack`
 
 ## Resources
 - [original boilerplate](https://github.com/rokoroku/react-redux-typescript-boilerplate)
